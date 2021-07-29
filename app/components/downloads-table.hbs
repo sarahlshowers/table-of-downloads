@@ -1,4 +1,11 @@
 <div class='download-files-table'>
   <DownloadsTableHeaderRow />
-  <DownloadsTableRow />
+  {{#each @allFiles as |file|}}
+    <DownloadsTableRow
+      @fileName={{file.name}}
+      @device={{file.device}}
+      @path={{file.path}}
+      @status={{file.status}}
+    />
+  {{/each}}
 </div>
