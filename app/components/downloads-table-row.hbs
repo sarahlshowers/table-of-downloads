@@ -1,9 +1,7 @@
-<div class='download-files-table__row'>
-  <ul>
-    <li><button type='button'>Checkbox</button></li>
-    <li><p>{{@fileName}}</p></li>
-    <li><p>{{@device}}</p></li>
-    <li><p>{{@path}}</p></li>
-    <li><p>{{@status}}</p></li>
-  </ul>
-</div>
+<ul class='downloads-table-row downloads-table-columns'>
+  <li class='display-flex'><input type='checkbox' id='{{@fileId}}' /></li>
+  <li><p>{{@fileName}}</p></li>
+  <li><p>{{@device}}</p></li>
+  <li><p>{{@path}}</p></li>
+  <li><p>{{@status}}</p></li>
+</ul>

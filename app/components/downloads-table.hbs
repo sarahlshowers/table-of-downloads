@@ -1,7 +1,8 @@
-<div class='download-files-table'>
+<div class='downloads-table'>
   <DownloadsTableHeaderRow />
-  {{#each @allFiles as |file|}}
+  {{#each @allFiles as |file index|}}
     <DownloadsTableRow
+      @fileId={{index}}
       @fileName={{file.name}}
       @device={{file.device}}
       @path={{file.path}}
