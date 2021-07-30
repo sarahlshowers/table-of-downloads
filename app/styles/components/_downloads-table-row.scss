@@ -1,0 +1,9 @@
+.downloads-table-row {
+  &:hover {
+    background-color: $light-gray;
+  }
+}
+
+.downloads-table-row--is-checked {
+  background-color: $light-gray;
+}

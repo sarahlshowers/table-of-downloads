@@ -1,4 +1,11 @@
 <div class='file-downloader'>
-  <FileDownloaderHeader />
-  <DownloadsTable @allFiles={{@allFiles}} />
+  <FileDownloaderHeader
+    @numSelectedFiles={{this.numSelectedFiles}}
+    @updateNumSelectedFiles={{this.updateNumSelectedFiles}}
+  />
+  <DownloadsTable
+    @allFiles={{@allFiles}}
+    @numSelectedFiles={{this.numSelectedFiles}}
+    @updateNumSelectedFiles={{this.updateNumSelectedFiles}}
+  />
 </div>

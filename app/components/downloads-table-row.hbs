@@ -1,5 +1,14 @@
-<ul class='downloads-table-row downloads-table-columns'>
-  <li class='display-flex'><input type='checkbox' id='{{@fileId}}' /></li>
+<ul id='row{{@fileId}}' class='downloads-table-row downloads-table-columns'>
+
+  <li class='display-flex'>
+    <input
+      type='checkbox'
+      id='{{@fileId}}'
+      disabled={{this.isDisabled}}
+      {{on 'click' this.handleCheckboxInteraction}}
+    />
+    {{!-- <label for='{{@fileId}}'>Checkbox to select file for download</label> --}}
+  </li>
   <li><p>{{@fileName}}</p></li>
   <li><p>{{@device}}</p></li>
   <li><p>{{@path}}</p></li>
