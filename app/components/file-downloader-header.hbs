@@ -1,5 +1,9 @@
 <ul class='file-downloader-header downloads-table-columns'>
-  <li><input type='checkbox' id='headerCheckBox' /></li>
+  <li><input
+      type='checkbox'
+      id='headerCheckbox'
+      {{on 'click' this.handleCheckboxInteraction}}
+    /></li>
   <li><p>Selected {{@numSelectedFiles}}</p></li>
   <li><button type='button'>Download button</button></li>
 </ul>

@@ -4,6 +4,7 @@
     <input
       type='checkbox'
       id='{{@fileId}}'
+      class='downloads-table-row__checkbox'
       disabled={{this.isDisabled}}
       {{on 'click' this.handleCheckboxInteraction}}
     />
@@ -12,5 +13,13 @@
   <li><p>{{@fileName}}</p></li>
   <li><p>{{@device}}</p></li>
   <li><p>{{@path}}</p></li>
-  <li><p>{{@status}}</p></li>
+  <li class='downloads-table-row__status'>
+    <div
+      class='downloads-table-row__status-indicator
+        {{if
+          this.isAvailable
+          'downloads-table-row__status-indicator--isAvailable'
+        }}'
+    ></div>
+    <p>{{@status}}</p></li>
 </ul>

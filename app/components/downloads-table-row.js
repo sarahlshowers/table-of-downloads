@@ -9,6 +9,9 @@ export default class DownloadsTableRow extends Component {
   @tracked
   numSelectedFiles = this.args.numSelectedFiles;
 
+  @tracked
+  isAvailable;
+
   constructor() {
     super(...arguments);
 
@@ -24,8 +27,10 @@ export default class DownloadsTableRow extends Component {
   isDownloadAvailable() {
     if (this.status === 'available') {
       this.isDisabled = false;
+      this.isAvailable = true;
     } else {
       this.isDisabled = true;
+      this.isAvailable = false;
     }
   }
 
@@ -34,6 +39,10 @@ export default class DownloadsTableRow extends Component {
     const inputEl = document.getElementById(this.args.fileId);
     const rowEl = document.getElementById(idString);
 
+    const allCheckboxes = document.getElementsByClassName(
+      'downloads-table-row__checkbox'
+    );
+
     if (inputEl.checked) {
       this.args.updateNumSelectedFiles((this.numSelectedFiles += 1));
       rowEl.classList.add('downloads-table-row--is-checked');
@@ -41,5 +50,13 @@ export default class DownloadsTableRow extends Component {
       this.args.updateNumSelectedFiles((this.numSelectedFiles -= 1));
       rowEl.classList.remove('downloads-table-row--is-checked');
     }
+
+    this.numSelectedFiles = 0;
+    for (let i = 0; i < allCheckboxes.length; i++) {
+      if (allCheckboxes[i].checked) {
+        this.numSelectedFiles += 1;
+      }
+    }
+    return this.args.updateNumSelectedFiles(this.numSelectedFiles);
   }
 }

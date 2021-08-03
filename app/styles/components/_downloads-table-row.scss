@@ -7,3 +7,18 @@
 .downloads-table-row--is-checked {
   background-color: $light-gray;
 }
+
+.downloads-table-row__status {
+  display: flex;
+  align-items: center;
+}
+
+.downloads-table-row__status-indicator {
+  width: 25px;
+}
+
+.downloads-table-row__status-indicator--isAvailable {
+  height: 25px;
+  background-color: greenyellow;
+  border-radius: 50%;
+}
