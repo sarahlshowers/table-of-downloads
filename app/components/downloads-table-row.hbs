@@ -1,10 +1,12 @@
 <ul
+  data-test-table-row
   id='row{{@fileId}}'
   class='downloads-table-row downloads-table-columns table-border table-row-padding'
 >
 
   <li class='display-flex'>
     <input
+      data-test-checkbox
       type='checkbox'
       id='{{@fileId}}'
       class='downloads-table-row__checkbox'
@@ -13,16 +15,17 @@
       {{on 'click' this.handleCheckboxInteraction}}
     />
   </li>
-  <li><p>{{@fileName}}</p></li>
-  <li><p>{{@device}}</p></li>
-  <li><p>{{@path}}</p></li>
+  <li><p data-test-file-name>{{@fileName}}</p></li>
+  <li><p data-test-device-name>{{@device}}</p></li>
+  <li><p data-test-path>{{@path}}</p></li>
   <li class='downloads-table-row__status'>
     <div
+      data-test-status-indicator
       class='downloads-table-row__status-indicator
         {{if
           this.isAvailable
           'downloads-table-row__status-indicator--isAvailable'
         }}'
     ></div>
-    <p>{{@status}}</p></li>
+    <p data-test-status>{{@status}}</p></li>
 </ul>

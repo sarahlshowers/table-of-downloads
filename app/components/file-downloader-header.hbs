@@ -1,4 +1,5 @@
 <ul
+  data-test-file-downloader-header
   class='file-downloader-header downloads-table-columns table-border table-row-padding'
 >
   <li><input
@@ -6,7 +7,7 @@
       id='headerCheckbox'
       {{on 'click' this.handleCheckboxInteraction}}
     /></li>
-  <li>
+  <li data-test-number-selected-files>
     {{#if @numSelectedFiles}}
       <h2>Selected {{@numSelectedFiles}}</h2>
     {{else}}
@@ -14,7 +15,12 @@
     {{/if}}
   </li>
   <li>
-    <button id='downloadFiles' type='button' {{on 'click' this.downloadFiles}}>
+    <button
+      data-test-download-button
+      id='downloadFiles'
+      type='button'
+      {{on 'click' this.downloadFiles}}
+    >
       <img height='16px' src='assets/download.png' alt='download files icon' />
       Download button
     </button>

@@ -3,24 +3,38 @@ import { setupRenderingTest } from 'ember-qunit';
 import { render } from '@ember/test-helpers';
 import { hbs } from 'ember-cli-htmlbars';
 
+const TEMPLATE = hbs`
+<FileDownloaderHeader
+  @allFiles={{@allFiles}}
+  @numSelectedFiles={{this.numSelectedFiles}}
+  @updateNumSelectedFiles={{this.updateNumSelectedFiles}}
+  @selectedFiles={{this.selectedFiles}}/>`;
+
 module('Integration | Component | file-downloader-header', function (hooks) {
   setupRenderingTest(hooks);
 
-  test('it renders', async function (assert) {
-    // Set any properties with this.set('myProperty', 'value');
-    // Handle any actions with this.set('myAction', function(val) { ... });
+  test('it renders the number of selected files', async function (assert) {
+    assert.expect(2);
 
-    await render(hbs`<FileDownloaderHeader />`);
+    this.set('numSelectedFiles', 0);
 
-    assert.dom(this.element).hasText('');
+    await render(TEMPLATE);
 
-    // Template block usage:
-    await render(hbs`
-      <FileDownloaderHeader>
-        template block text
-      </FileDownloaderHeader>
-    `);
+    assert.dom('[data-test-number-selected-files]').hasText('None selected');
 
-    assert.dom(this.element).hasText('template block text');
+    this.set('numSelectedFiles', 1);
+
+    await render(TEMPLATE);
+
+    assert.dom('[data-test-number-selected-files]').hasText('Selected 1');
+  });
+
+  test('it renders the download button', async function (assert) {
+    assert.expect(2);
+
+    await render(TEMPLATE);
+
+    assert.dom('[data-test-download-button]').exists('it renders the button');
+    assert.dom('[data-test-download-button]').hasText('Download button');
   });
 });

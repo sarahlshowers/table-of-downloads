@@ -3,24 +3,41 @@ import { setupRenderingTest } from 'ember-qunit';
 import { render } from '@ember/test-helpers';
 import { hbs } from 'ember-cli-htmlbars';
 
+const TEMPLATE = hbs`
+<FileDownloader
+  @allFiles={{this.allFiles}}
+  @numSelectedFiles={{this.numSelectedFiles}}
+  @numFilesAvailable={{this.numFilesAvailable}}
+  @selectedFiles={{this.selectedFiles}} />`;
+
 module('Integration | Component | file-downloader', function (hooks) {
   setupRenderingTest(hooks);
 
-  test('it renders', async function (assert) {
-    // Set any properties with this.set('myProperty', 'value');
-    // Handle any actions with this.set('myAction', function(val) { ... });
+  test('it renders the downloads table components', async function (assert) {
+    assert.expect(2);
 
-    await render(hbs`<FileDownloader />`);
+    const model = [
+      {
+        name: 'smss.exe',
+        device: 'Stark',
+        path: '\\Device\\HarddiskVolume2\\Windows\\System32\\smss.exe',
+        status: 'scheduled',
+      },
+      {
+        name: 'netsh.exe',
+        device: 'Targaryen',
+        path: '\\Device\\HarddiskVolume2\\Windows\\System32\\netsh.exe',
+        status: 'available',
+      },
+    ];
 
-    assert.dom(this.element).hasText('');
+    this.set('allFiles', model);
 
-    // Template block usage:
-    await render(hbs`
-      <FileDownloader>
-        template block text
-      </FileDownloader>
-    `);
+    await render(TEMPLATE);
 
-    assert.dom(this.element).hasText('template block text');
+    assert
+      .dom('[data-test-file-downloader-header]')
+      .exists('it renders the header');
+    assert.dom('[data-test-downloads-table]').exists('it renders the table');
   });
 });

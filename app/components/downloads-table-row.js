@@ -22,9 +22,12 @@ export default class DownloadsTableRow extends Component {
     this.status = this.args.status;
 
     this.isDownloadAvailable();
+
+    // debugger;
   }
 
   isDownloadAvailable() {
+    debugger;
     if (this.status === 'available') {
       this.isDisabled = false;
       this.isAvailable = true;
