@@ -31,4 +31,23 @@ export default class FileDownloaderHeader extends Component {
       });
     }
   }
+
+  @action
+  downloadFiles() {
+    const foo = this.args.selectedFiles;
+    const files = this.allFiles;
+    const list = [];
+    let alertMessage;
+
+    foo.map((el) => {
+      const file = files.findBy('id', el);
+      const fileInfo = `- ${file.device} ${file.path}\n`;
+      list.push(fileInfo);
+    });
+
+    alertMessage = list;
+
+    console.log(list);
+    alert(alertMessage);
+  }
 }

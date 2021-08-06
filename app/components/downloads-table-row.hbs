@@ -9,9 +9,9 @@
       id='{{@fileId}}'
       class='downloads-table-row__checkbox'
       disabled={{this.isDisabled}}
+      aria-label='{{@fileId}}'
       {{on 'click' this.handleCheckboxInteraction}}
     />
-    {{!-- <label for='{{@fileId}}'>Checkbox to select file for download</label> --}}
   </li>
   <li><p>{{@fileName}}</p></li>
   <li><p>{{@device}}</p></li>

@@ -34,6 +34,18 @@ export default class DownloadsTableRow extends Component {
     }
   }
 
+  updateDownloadsList(id) {
+    let fileList = this.args.selectedFiles;
+
+    if (fileList.includes(id)) {
+      const newList = fileList.without(id);
+      return this.args.updateListOfDownloads(newList);
+    } else {
+      fileList.push(id);
+      return this.args.updateListOfDownloads(fileList);
+    }
+  }
+
   @action handleCheckboxInteraction() {
     const idString = `row${this.args.fileId}`;
     const inputEl = document.getElementById(this.args.fileId);
@@ -45,9 +57,11 @@ export default class DownloadsTableRow extends Component {
 
     if (inputEl.checked) {
       this.args.updateNumSelectedFiles((this.numSelectedFiles += 1));
+      this.updateDownloadsList(this.args.fileId);
       rowEl.classList.add('downloads-table-row--is-checked');
     } else {
       this.args.updateNumSelectedFiles((this.numSelectedFiles -= 1));
+      this.updateDownloadsList(this.args.fileId);
       rowEl.classList.remove('downloads-table-row--is-checked');
     }
 

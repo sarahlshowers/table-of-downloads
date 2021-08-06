@@ -6,6 +6,17 @@
       id='headerCheckbox'
       {{on 'click' this.handleCheckboxInteraction}}
     /></li>
-  <li><h2>Selected {{@numSelectedFiles}}</h2></li>
-  <li><button type='button'>Download button</button></li>
+  <li>
+    {{#if @numSelectedFiles}}
+      <h2>Selected {{@numSelectedFiles}}</h2>
+    {{else}}
+      <h2>None selected</h2>
+    {{/if}}
+  </li>
+  <li>
+    <button id='downloadFiles' type='button' {{on 'click' this.downloadFiles}}>
+      <img height='16px' src='assets/download.png' alt='download files icon' />
+      Download button
+    </button>
+  </li>
 </ul>

@@ -9,6 +9,9 @@ export default class FileDownloader extends Component {
   @tracked
   numFilesAvailable;
 
+  @tracked
+  selectedFiles = [];
+
   constructor() {
     super(...arguments);
 
@@ -21,8 +24,6 @@ export default class FileDownloader extends Component {
         return (availableCounter += 1);
       }
     });
-
-    // debugger;
   }
 
   @action
@@ -31,9 +32,13 @@ export default class FileDownloader extends Component {
     this.setHeaderCheckboxIndeterminateState();
   }
 
+  @action
+  updateListOfDownloads(updatedList) {
+    this.selectedFiles = updatedList;
+  }
+
   setHeaderCheckboxIndeterminateState() {
     const headerCheckbox = document.getElementById('headerCheckbox');
-    // debugger;
 
     if (
       this.numSelectedFiles === 0 ||
